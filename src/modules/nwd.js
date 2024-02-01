@@ -1,4 +1,7 @@
 import fs from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
+import os from "node:os";
 
 export const ls = async (path = ".") => {
   try {
@@ -33,4 +36,18 @@ export const ls = async (path = ".") => {
     }
     return a.Name.localeCompare(b.Name);
   }
+};
+
+export const up = () => {
+  const currentDir = process.cwd();
+  const parentDir = path.dirname(currentDir);
+  const rootDir = os.homedir();
+
+  if (currentDir !== rootDir) {
+    process.chdir(parentDir);
+  }
+};
+
+export const cd = (path) => {
+  process.chdir(path);
 };
