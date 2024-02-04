@@ -38,16 +38,17 @@ export const ls = async (path = ".") => {
   }
 };
 
-export const up = () => {
-  const currentDir = process.cwd();
-  const parentDir = path.dirname(currentDir);
-  const rootDir = os.homedir();
+export const up = (currentDir) => {
+  const parentDir = path.resolve(currentDir, "..");
 
-  if (currentDir !== rootDir) {
-    process.chdir(parentDir);
+  if (currentDir !== "/") {
+    return parentDir;
   }
+
+  return currentDir;
 };
 
-export const cd = (path) => {
-  process.chdir(path);
+export const cd = ([destPath]) => {
+  const destination = path.resolve(destPath);
+  return destination;
 };
