@@ -3,9 +3,9 @@ import path from "node:path";
 import process from "node:process";
 import os from "node:os";
 
-export const ls = async (path = ".") => {
+export const ls = async (currentDir) => {
   try {
-    const list = await fs.readdir(path);
+    const list = await fs.readdir(currentDir);
     const result = [];
 
     for (const file of list) {
@@ -40,6 +40,7 @@ export const ls = async (path = ".") => {
 
 export const up = (currentDir) => {
   const parentDir = path.resolve(currentDir, "..");
+  console.log("--up", { currentDir, parentDir });
 
   if (currentDir !== "/") {
     return parentDir;
@@ -48,7 +49,8 @@ export const up = (currentDir) => {
   return currentDir;
 };
 
-export const cd = ([destPath]) => {
-  const destination = path.resolve(destPath);
+export const cd = (currentPath, [destPath]) => {
+  console.log("--cd", { currentPath, destPath });
+  const destination = path.resolve(currentPath, destPath);
   return destination;
 };

@@ -2,14 +2,14 @@ import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import os from "node:os";
 
-import * as os_module from "./modules/os.js";
+import { os_module } from "./modules/os.js";
 import * as nwd_module from "./modules/nwd.js";
 import * as files_module from "./modules/files.js";
 import * as hash_module from "./modules/hash.js";
 import * as zip_module from "./modules/zip.js";
 
-import { MESSAGES, OPERATIONS } from "./constants.js";
-import { getCurrentDirPath, validateOperations } from "./utils.js";
+import { ARGS, MESSAGES, OPERATIONS } from "./constants.js";
+import { validateOperations } from "./utils.js";
 
 export const app = async (username) => {
   const rl = readline.createInterface({ input, output });
@@ -26,6 +26,7 @@ export const app = async (username) => {
       if (validateOperations(answer)) {
         const [command, ...args] = answer.split(" ");
         console.log({ command, args });
+
         await performOperation(command, args);
         console.log(MESSAGES.currentPath(currentPath));
       }
@@ -47,10 +48,13 @@ export const app = async (username) => {
         currentPath = nwd_module.up(currentPath);
         break;
       case OPERATIONS.cd:
-        currentPath = nwd_module.cd(args);
+        currentPath = nwd_module.cd(currentPath, args);
         break;
+
       case OPERATIONS.os:
-        currentPath = os_module.cd(args);
+        if (ARGS.includes(args[0])) {
+          os_module[args]();
+        }
         break;
 
       case OPERATIONS.add:
@@ -58,12 +62,14 @@ export const app = async (username) => {
         break;
 
       case OPERATIONS.compress:
+        await zip_module.compress(args);
         break;
       case OPERATIONS.decompress:
+        await zip_module.decompress(args);
         break;
 
       case OPERATIONS.hash:
-        hash_module.calculate(args);
+        await hash_module.calculate(args);
         break;
 
       default:

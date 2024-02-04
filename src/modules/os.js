@@ -1,6 +1,6 @@
 import os from "node:os";
 
-export const cpus = () => {
+const cpus = () => {
   const cpus = os.cpus().map(({ model, speed }) => ({
     model,
     "speed (GHz)": speed / 1000,
@@ -8,14 +8,28 @@ export const cpus = () => {
   console.table(cpus);
 };
 
-export const homedir = () => {
+const homedir = () => {
   console.log(os.homedir());
 };
 
-export const architecture = () => {
+const architecture = () => {
   console.log(os.arch());
 };
 
-export const eol = () => {
+const eol = () => {
   console.log(os.EOL);
 };
+
+const username = () => {
+  console.log(os.userInfo().username);
+};
+
+const os_module = {
+  "--cpus": cpus,
+  "--EOL": eol,
+  "--homedir": homedir,
+  "--username": username,
+  "--architecture": architecture,
+};
+
+export { os_module };

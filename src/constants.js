@@ -35,4 +35,4 @@ export const OPERATIONS = {
   decompress: "decompress",
 };
 
-export const ARGS = ["--EOL", "--cpus", "--homedir", "--username", "--architecture"];
+export const ARGS = ["--cpus", "--EOL", "--homedir", "--username", "--architecture"];
