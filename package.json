@@ -1,0 +1,20 @@
+{
+  "name": "task-2-file-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mordgard/task-2-file-manager.git"
+  },
+  "author": "Mikhail Sharakou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mordgard/task-2-file-manager/issues"
+  },
+  "homepage": "https://github.com/mordgard/task-2-file-manager#readme"
+}
