@@ -10,8 +10,8 @@ export const compress = async ([source, destination]) => {
 
   try {
     await pipeline(readable, gzipStream, writable);
-  } catch (error) {
-    console.error(MESSAGES.failed);
+  } catch {
+    console.log(MESSAGES.failed);
   }
 };
 
@@ -22,7 +22,7 @@ export const decompress = async ([source, destination]) => {
 
   try {
     await pipeline(readable, gunzipStream, writable);
-  } catch (error) {
-    console.error(MESSAGES.failed);
+  } catch {
+    console.log(MESSAGES.failed);
   }
 };

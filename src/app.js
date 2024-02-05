@@ -35,7 +35,7 @@ export const app = async (username) => {
     process.on("exit", () => console.log(MESSAGES.bye(username)));
     rl.close();
   } catch (error) {
-    console.log(error.message);
+    console.log(MESSAGES.failed);
     rl.close();
   }
 
@@ -59,8 +59,23 @@ export const app = async (username) => {
         }
         break;
 
+      case OPERATIONS.cat:
+        files_module.cat(args);
+        break;
       case OPERATIONS.add:
         files_module.add(currentPath, args);
+        break;
+      case OPERATIONS.rn:
+        files_module.rn(args);
+        break;
+      case OPERATIONS.rm:
+        files_module.rm(args);
+        break;
+      case OPERATIONS.cp:
+        files_module.cp(args);
+        break;
+      case OPERATIONS.mv:
+        files_module.mv(args);
         break;
 
       case OPERATIONS.compress:

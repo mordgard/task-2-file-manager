@@ -8,14 +8,14 @@ export const ls = async (currentDir) => {
 
     for (const file of list) {
       const isDir = await isDirectory(file);
-      const mapped = { Name: file, Type: isDir ? "directory" : "file" }; // CHECK
+      const mapped = { Name: file, Type: isDir ? "directory" : "file" };
 
       result.push(mapped);
     }
 
     const filtered = result.sort(compareFn);
     console.table(filtered);
-  } catch (error) {
+  } catch {
     console.log(MESSAGES.failed);
   }
 
