@@ -21,11 +21,9 @@ export const ls = async (currentDir) => {
 
   async function isDirectory(file) {
     try {
-      const stat = await fs.stat(file);
+      const stat = await fs.stat(path.join(currentDir, file));
       return stat.isDirectory();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch {}
   }
 
   function compareFn(a, b) {
