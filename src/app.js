@@ -25,7 +25,7 @@ export const app = async (username) => {
 
       if (validateOperations(answer)) {
         const [command, ...args] = answer.split(" ");
-        console.log({ command, args });
+        console.debug("DEBUG: ", { command, args });
 
         await performOperation(command, args);
         console.log(MESSAGES.currentPath(currentPath));
@@ -54,6 +54,8 @@ export const app = async (username) => {
       case OPERATIONS.os:
         if (ARGS.includes(args[0])) {
           os_module[args]();
+        } else {
+          console.log(MESSAGES.invalid);
         }
         break;
 

@@ -1,7 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import process from "node:process";
-import os from "node:os";
 
 export const ls = async (currentDir) => {
   try {
