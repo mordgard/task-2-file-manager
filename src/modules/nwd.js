@@ -8,7 +8,7 @@ export const ls = async (currentDir) => {
 
     for (const file of list) {
       const isDir = await isDirectory(file);
-      const mapped = { Name: file, Type: isDir ? "directory" : "file" };
+      const mapped = { Name: file, Type: isDir ? "directory" : "file" }; // CHECK
 
       result.push(mapped);
     }
@@ -16,7 +16,7 @@ export const ls = async (currentDir) => {
     const filtered = result.sort(compareFn);
     console.table(filtered);
   } catch (error) {
-    console.log(error);
+    console.log(MESSAGES.failed);
   }
 
   async function isDirectory(file) {
@@ -38,7 +38,6 @@ export const ls = async (currentDir) => {
 
 export const up = (currentDir) => {
   const parentDir = path.resolve(currentDir, "..");
-  console.log("--up", { currentDir, parentDir });
 
   if (currentDir !== "/") {
     return parentDir;
@@ -48,7 +47,6 @@ export const up = (currentDir) => {
 };
 
 export const cd = (currentPath, [destPath]) => {
-  console.log("--cd", { currentPath, destPath });
   const destination = path.resolve(currentPath, destPath);
   return destination;
 };
